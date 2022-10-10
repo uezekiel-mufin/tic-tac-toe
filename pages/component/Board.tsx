@@ -2,15 +2,22 @@ import React from "react";
 
 type Player = {
   activePlayer: string;
-  setClicked: string;
+
   clicked: string;
+  winner: string;
   value: string;
   onClick: () => void;
 };
 
-const Board = ({ activePlayer, onClick, value }: Player) => {
+const Board = ({ activePlayer, onClick, value, winner }: Player) => {
   if (!value) {
-    return <button className='square' onClick={onClick}></button>;
+    return (
+      <button
+        className='square'
+        disabled={Boolean(winner)}
+        onClick={onClick}
+      ></button>
+    );
   }
   return (
     <button
